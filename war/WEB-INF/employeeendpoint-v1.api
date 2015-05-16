@@ -1,0 +1,234 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://kinetic-dream-866.appspot.com/_ah/api",
+  "name" : "employeeendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://kinetic-dream-866.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "one_one.entidades",
+  "ownerName" : "one_one.entidades",
+  "methods" : {
+    "employeeendpoint.getEmployee" : {
+      "path" : "employee/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "entidades.one_one.EmployeeEndpoint.getEmployee",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "employeeendpoint.insertEmployee" : {
+      "path" : "employee",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "entidades.one_one.EmployeeEndpoint.insertEmployee",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "employeeendpoint.updateEmployee" : {
+      "path" : "employee",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "entidades.one_one.EmployeeEndpoint.updateEmployee",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "employeeendpoint.removeEmployee" : {
+      "path" : "employee/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "entidades.one_one.EmployeeEndpoint.removeEmployee",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "employeeendpoint.listEmployee" : {
+      "path" : "employee",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "entidades.one_one.EmployeeEndpoint.listEmployee",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Employee" : {
+        "id" : "Employee",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "contactInfo" : {
+            "$ref" : "ContactInfo"
+          }
+        }
+      },
+      "ContactInfo" : {
+        "id" : "ContactInfo",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "streetAddress" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          }
+        }
+      },
+      "EmployeeCollection" : {
+        "id" : "EmployeeCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Employee"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "entidades.one_one.EmployeeEndpoint.getEmployee" : {
+        "response" : {
+          "$ref" : "Employee"
+        }
+      },
+      "entidades.one_one.EmployeeEndpoint.insertEmployee" : {
+        "request" : {
+          "$ref" : "Employee"
+        },
+        "response" : {
+          "$ref" : "Employee"
+        }
+      },
+      "entidades.one_one.EmployeeEndpoint.updateEmployee" : {
+        "request" : {
+          "$ref" : "Employee"
+        },
+        "response" : {
+          "$ref" : "Employee"
+        }
+      },
+      "entidades.one_one.EmployeeEndpoint.removeEmployee" : {
+      },
+      "entidades.one_one.EmployeeEndpoint.listEmployee" : {
+        "response" : {
+          "$ref" : "EmployeeCollection"
+        }
+      }
+    }
+  }
+}
